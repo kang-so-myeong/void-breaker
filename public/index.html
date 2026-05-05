@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOID BREAKER - 네온 우주 슈팅 게임 | Free Browser Game</title>
+<meta name="description" content="VOID BREAKER - 화려한 네온 이펙트의 우주 슈팅 게임. 브라우저에서 바로 플레이! 보스전, 콤보 시스템, 파워업이 가득한 무료 게임.">
+<meta name="keywords" content="void breaker, space shooter, 우주 슈팅 게임, 브라우저 게임, free game, neon game, arcade">
+<meta name="author" content="VoidBreaker Studio">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / SNS 공유 -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="VOID BREAKER - 네온 우주 슈팅 게임">
+<meta property="og:description" content="화려한 네온 이펙트의 우주 슈팅 게임. 브라우저에서 바로 플레이하세요!">
+<meta property="og:url" content="https://void-breaker.vercel.app">
+<meta property="og:image" content="/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- Google AdSense                          -->
+<!-- 아래 ca-pub-XXXXXXX를 본인의 AdSense    -->
+<!-- 퍼블리셔 ID로 교체하세요                  -->
+<!-- ═══════════════════════════════════════ -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="gameCanvas"></canvas>
+
+<!-- ═══ 상단 배너 광고 ═══ -->
+<div id="ad-top" class="ad-container">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="horizontal"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div id="ui-overlay">
+  <div id="menu-screen" class="screen active">
+    <h1 class="title glow">VOID<br>BREAKER</h1>
+    <p class="subtitle">네온 우주를 지켜라</p>
+    <div class="controls-info">
+      <p>🎮 <b>WASD / 방향키</b> 이동</p>
+      <p>🖱️ <b>마우스</b> 조준 &amp; 클릭 발사</p>
+      <p>⚡ <b>SPACE</b> 대시</p>
+      <p>⏸️ <b>ESC</b> 일시정지</p>
+    </div>
+    <button id="startBtn" class="neon-btn" onclick="game.start()">START GAME</button>
+
+    <!-- 메뉴 화면 광고 -->
+    <div class="ad-menu-container">
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:336px;height:280px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <div id="pause-screen" class="screen">
+    <h2 class="glow">PAUSED</h2>
+    <button class="neon-btn" onclick="game.resume()">RESUME</button>
+  </div>
+
+  <div id="gameover-screen" class="screen">
+    <h2 class="glow red">GAME OVER</h2>
+    <div id="final-stats"></div>
+    <button class="neon-btn" onclick="game.restart()">RETRY</button>
+
+    <!-- 게임오버 화면 광고 -->
+    <div class="ad-gameover-container">
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:336px;height:280px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <div id="hud">
+    <div id="hud-left">
+      <div class="hud-item"><span class="label">SCORE</span><span id="hud-score">0</span></div>
+      <div class="hud-item"><span class="label">COMBO</span><span id="hud-combo">x1</span></div>
+    </div>
+    <div id="hud-center">
+      <div id="wave-announce" class="hidden"></div>
+    </div>
+    <div id="hud-right">
+      <div class="hud-item"><span class="label">WAVE</span><span id="hud-wave">1</span></div>
+      <div class="hud-item hp-bar-wrap">
+        <span class="label">HP</span>
+        <div class="hp-bar"><div id="hp-fill"></div></div>
+      </div>
+      <div class="hud-item"><span class="label">DASH</span><div class="hp-bar"><div id="dash-fill"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 하단 배너 광고 ═══ -->
+<div id="ad-bottom" class="ad-container">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="horizontal"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
