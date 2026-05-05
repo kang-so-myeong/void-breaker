@@ -25,6 +25,16 @@ app.use(express.static(path.join(__dirname, 'public'), {
 }));
 
 // Vercel Serverless 환경에서 express.static 경로 매핑이 누락되는 현상 방지를 위한 명시적 라우팅
+app.get('/debug', (req, res) => {
+  const fs = require('fs');
+  try {
+    const files = fs.readdirSync(path.join(__dirname, 'public'));
+    res.send('Files in public: ' + files.join(', ') + ' | __dirname: ' + __dirname);
+  } catch(e) {
+    res.send('Error reading public dir: ' + e.message + ' | __dirname: ' + __dirname);
+  }
+});
+
 app.get('/ads.txt', (req, res) => res.sendFile(path.join(__dirname, 'public', 'ads.txt')));
 app.get('/robots.txt', (req, res) => res.sendFile(path.join(__dirname, 'public', 'robots.txt')));
 app.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, 'public', 'style.css')));
