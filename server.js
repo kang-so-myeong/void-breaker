@@ -15,16 +15,20 @@ app.use(helmet({
 // ── Gzip 압축 (성능 최적화) ──
 app.use(compression());
 
-// ── 캐시 설정 ──
+// ── 캐시 설정 & 정적 파일 제공 ──
 app.use(express.static(path.join(__dirname, 'public'), {
   maxAge: '1d',
   etag: true,
   setHeaders(res, filePath) {
-    if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-cache');
-    }
+    if (filePath.endsWith('.html')) res.setHeader('Cache-Control', 'no-cache');
   }
 }));
+
+// Vercel Serverless 환경에서 express.static 경로 매핑이 누락되는 현상 방지를 위한 명시적 라우팅
+app.get('/ads.txt', (req, res) => res.sendFile(path.join(__dirname, 'public', 'ads.txt')));
+app.get('/robots.txt', (req, res) => res.sendFile(path.join(__dirname, 'public', 'robots.txt')));
+app.get('/style.css', (req, res) => res.sendFile(path.join(__dirname, 'public', 'style.css')));
+app.get('/game.js', (req, res) => res.sendFile(path.join(__dirname, 'public', 'game.js')));
 
 // ── SPA fallback ──
 app.get('*', (req, res) => {
