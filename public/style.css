@@ -66,11 +66,7 @@ canvas { display:block; position:fixed; top:0; left:0; z-index:1; }
 #final-stats { color:#adf; font-size:1.2rem; margin:1.5rem 0; text-align:center; line-height:2; }
 #final-stats b { color:#0ff; font-family:'Orbitron',monospace; }
 
-/* Ad containers */
-.ad-container { position:fixed; left:0; width:100%; z-index:20; text-align:center;
-  background:rgba(0,0,0,0.7); padding:4px 0; pointer-events:auto; }
-#ad-top { top:0; }
-#ad-bottom { bottom:0; }
+/* Ad containers (menu and gameover only) */
 .ad-menu-container, .ad-gameover-container { margin-top:1.5rem; opacity:0.9; }
 
 .screen { overflow-y:auto; padding:2rem 1rem; }
